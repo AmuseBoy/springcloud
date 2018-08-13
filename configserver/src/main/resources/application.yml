@@ -1,0 +1,17 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/AmuseBoy/config-repo.git
+          username:
+          password:
+          search-paths: boottwo #配置的相对路径，可配置多个，用,隔开,不通项目不通配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/

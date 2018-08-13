@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: zuul
+  zipkin:
+    base-url: http://localhost:9000 #链路追踪服务器
+  sleuth:
+    sampler:
+      percentage: 1.0  #链路追踪采样比
+management:
+  security:
+    enabled: false #spring cloud 内部的一些接口，默认是访问不了
+zuul:
+  ignored-services: '*' #除了配置的服务，忽略所有的服务
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
+  routes:
+    zimg:
+      path: /zimg/**
+      serviceId: SIDECAR
+      stripPrefix: true
+    baidu:
+      url: https://www.baidu.com
+    bootone:
+      path: /bootone/**
+      serviceId: BOOTONE
+      stripPrefix: true #往下请求时，请求前缀截取掉，也就是继续请求 /**
+      sensitive-headers: #Cookie,Set-Cookie,Authorization
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registryFetchIntervalSeconds: 5 #获取服务端注册信息间隔
+    eurekaServiceUrlPollIntervalSeconds: 120
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 15 #15s向服务器端发送一次心跳
+    leaseExpirationDurationInSeconds: 30 #30s没有向服务端发送心跳，服务就会被踢掉
+    securePortEnabled: false
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+  eureka:
+    enabled: true
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000 #这个值默认是1s

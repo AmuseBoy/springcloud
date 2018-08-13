@@ -1,0 +1,12 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: bootthree
+feign:
+  hystrix:
+    enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer3:8763/eureka/

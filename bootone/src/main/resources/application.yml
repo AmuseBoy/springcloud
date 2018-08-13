@@ -1,0 +1,30 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: bootone
+  zipkin:
+    base-url: http://localhost:9000 #链路追踪服务器
+  sleuth:
+    sampler:
+      percentage: 1.0  #链路追踪采样比
+#  boot:
+#    admin:
+#      url: http://localhost:7088  # admin监听地址,没用注册eureka,需要用这种方式
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registryFetchIntervalSeconds: 5 #获取服务端注册信息间隔
+    eurekaServiceUrlPollIntervalSeconds: 120
+    serviceUrl:
+      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer3:8763/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 15 #15s向服务器端发送一次心跳
+    leaseExpirationDurationInSeconds: 30 #30s没有向服务端发送心跳，服务就会被踢掉
+    securePortEnabled: false
+management:
+  security:
+    enabled: false #spring cloud接口权限

@@ -1,0 +1,31 @@
+server:
+  port: 5678
+management:
+  security:
+    enabled: true #spring cloud 内部的一些接口，默认是访问不了
+spring:
+  application:
+    name: sidecar
+  http:
+    multipart:
+      max-file-size: 10MB
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registryFetchIntervalSeconds: 5 #获取服务端注册信息间隔
+    eurekaServiceUrlPollIntervalSeconds: 120
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 15 #15s向服务器端发送一次心跳
+    leaseExpirationDurationInSeconds: 30 #30s没有向服务端发送心跳，服务就会被踢掉
+    securePortEnabled: false
+hystrix.command.default.execution.timeout.enabled: false
+sidecar:
+  port: 4869 #需要代理的服务端口
+  health-uri: http://localhost:5678/health  #health-uri要求返回{"status":"UP"},此处我模拟代理服务返回这个，本该是http://192.168.32.128:${sidecar.port}/**
+  home-page-uri: http://192.168.32.128:${sidecar.port}/
+  ip-address: 192.168.32.128
