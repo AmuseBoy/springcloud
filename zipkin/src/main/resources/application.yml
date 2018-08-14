@@ -1,5 +1,8 @@
 server:
   port: 9000
+management:
+  security:
+    enabled: false #spring cloud接口权限 ,不然注册不到admin
 spring:
   application:
     name: zipkin

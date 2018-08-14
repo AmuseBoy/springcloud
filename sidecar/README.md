@@ -17,4 +17,6 @@ zimg：环境搭建https://blog.csdn.net/renhuaniang/article/details/46376039
 如：
 zimg访问：http://192.168.32.128:4869/5377e185f4973db8a63f6b175dac14f0
 zuul访问实例：http://localhost:8888/zimg/5377e185f4973db8a63f6b175dac14f0
+restTemplate(ip)访问: http://localhost:5678/5377e185f4973db8a63f6b175dac14f0
+restTemplate(实例)访问: http://sidecar:5678/5377e185f4973db8a63f6b175dac14f0
 
