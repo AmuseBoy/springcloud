@@ -1,22 +1,22 @@
 server:
   port: 7088
+  context-path: /sba
 management:
   security:
     enabled: false #spring cloud接口权限
 spring:
   application:
     name: admin
-#  boot:
-#    admin: #把自己也注册到admin
-#      url: http://127.0.0.1:7088
-#      client:
-#        prefer-ip: true
+  boot:
+    admin: #把自己也注册到admin
+      url: http://localhost:7088/sba
+      client:
+        prefer-ip: true
 eureka:
   client:
     service-url:
       defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
-#endpoints:
-#  health:
-#    sensitive: true #actuator的health接口是否需要安全认证
-#    enabled: false
+endpoints:
+  health:
+    sensitive: false #actuator的health接口是否需要安全认证
 
