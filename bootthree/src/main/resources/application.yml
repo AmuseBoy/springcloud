@@ -9,4 +9,4 @@ feign:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer3:8763/eureka/
+      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer1:8763/eureka/

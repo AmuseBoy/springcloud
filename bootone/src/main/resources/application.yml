@@ -21,7 +21,7 @@ eureka:
     registryFetchIntervalSeconds: 5 #获取服务端注册信息间隔
     eurekaServiceUrlPollIntervalSeconds: 120
     serviceUrl:
-      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer3:8763/eureka/
+      defaultZone: http://peer2:8761/eureka/,http://peer3:8762/eureka/,http://peer1:8763/eureka/
   instance:
     hostname: localhost
     preferIpAddress: true
