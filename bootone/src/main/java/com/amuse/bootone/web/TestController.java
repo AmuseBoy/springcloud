@@ -1,5 +1,7 @@
 package com.amuse.bootone.web;
 
+import com.amuse.bootone.integration.TestRemote;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    @Autowired
+    private TestRemote testRemote;
+
     @RequestMapping(value = "/testOne" , method = RequestMethod.GET)
     public String testOne(){
-        return "这是返回测试数据";
+        return "这是返回testOne测试数据";
+    }
+
+    @RequestMapping(value = "/testThree" , method = RequestMethod.GET)
+    public String testThree(){
+        return testRemote.testThree();
     }
 }

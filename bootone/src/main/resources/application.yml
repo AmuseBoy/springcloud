@@ -11,6 +11,9 @@ spring:
 #  boot:
 #    admin:
 #      url: http://localhost:7088  # admin监听地址,没用注册eureka,需要用这种方式
+feign:
+  hystrix:
+    enabled: true
 eureka:
   client:
     register-with-eureka: true

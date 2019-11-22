@@ -39,4 +39,10 @@ public class TestController {
         return restTemplate.getForObject("http://BOOTONE/testOne",String.class);
     }
 
+
+    @RequestMapping(value = "/testThree" , method = RequestMethod.GET)
+    public String testThree(){
+        return "这是返回testThree测试数据";
+    }
+
 }
